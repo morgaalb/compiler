@@ -1,3 +1,10 @@
+%{
+#include <stdio.h>
+extern int lineno;
+
+%}
+
+
 %token INTEGER
 %token ID
 %token SEMICOLON
@@ -32,64 +39,86 @@
 
 
 program:
-	declaration_list	{}
+	declaration_list
+		{}
 	;
 
 declaration_list:
-	declaration_list declaration	{}
-	| declaration			{}
+	declaration_list declaration
+		{}
+	| declaration
+		{}
 	;
 
 declaration:
-	var_declaration			{}
-	| fun_declaration		{}
+	var_declaration
+		{}
+	| fun_declaration
+		{}
 	;
 
 var_declaration:
-	type_specifier ID SEMICOLON	{}
-	| type_specifier ID LBRACKET NUMBER RBRACKET SEMICOLON {}
+	type_specifier ID SEMICOLON
+		{}
+	| type_specifier ID LBRACKET NUMBER RBRACKET SEMICOLON
+		{}
 	;
 
 type_specifier:
 	INT
+		{}
 	| VOID
+		{}
 	;
 
 fun_declaration:
-	type_specifier ID LPAREN params RPAREN compound_stmt {}
+	type_specifier ID LPAREN params RPAREN compound_stmt
+		{}
 	;
 
 params:
 	param_list
+		{}
 	| VOID
+		{}
 	;
 
 param_list:
 	param_list COMMA param
+		{}
 	| param
+		{}
 	;
 
 param:
 	type_specifier ID
+		{}
 	| type_specifier ID LBRACKET RBRACKET
+		{}
 	;
 
 compound_stmt:
 	LBRACE local_declarations statement_list RBRACE
+		{}
 	;
 
 local_declarations:
 	local_declarations var_declaration
+		{}
 	| empty
+		{}
 	;
 
 statement_list:
 	statement_list statement
+		{}
 	| empty
+		{}
 	;
 
 statement:
 	expression_stmt
+		{}
 	| compound_stmt
 	| selection_stmt
 	| iteration_stmt
@@ -145,7 +174,7 @@ additive_expression:
 	;
 
 addop:
-	PLUS
+	PLUS {printf("ADDING!\n");}
 	| MINUS
 	;
 
@@ -184,3 +213,8 @@ empty:
 	;
 
 %%
+
+void yyerror(char *s)
+{
+	printf("ERROR: %s on line: %d\n", s, lineno);
+}

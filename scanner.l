@@ -1,5 +1,7 @@
 %{
-#include "globals.h"
+#include "y.tab.h"
+
+extern int lineno;
 %}
 
 digit		[0-9]
@@ -28,7 +30,7 @@ whitespace	[ \t]+
 "=="		{return EQ;}
 "!="		{return NEQ;}
 "="		{return ASSIGN;}
-";"		{return SEMI;}
+";"		{return SEMICOLON;}
 ","		{return COMMA;}
 "("		{return LPAREN;}
 ")"		{return RPAREN;}
@@ -36,14 +38,12 @@ whitespace	[ \t]+
 "]"		{return RBRACKET;}
 "{"		{return LBRACE;}
 "}"		{return RBRACE;}
-"read"		{return READ;}
-"write"		{return WRITE;}
 
 {number}	{return NUMBER;}
 {identifier}	{return ID;}
-{newline}	{lineno++; return NEWLINE;}
+{newline}	{lineno++;}
 {whitespace}	{}
-.		{return ERROR;}
+.		{return -1;}
 
 %%
 
@@ -104,8 +104,8 @@ void print_token(int code) {
  		case NEQ:
 			printf("NEQ ");
 			break;
-		case SEMI:
-			printf("SEMI ");
+		case SEMICOLON:
+			printf("SEMICOLON ");
 			break;
 		case COMMA:
 			printf("COMMA ");
@@ -128,20 +128,17 @@ void print_token(int code) {
 		case RBRACE:
 			printf("RBRACE ");
 			break;
-		case READ:
+/*		case READ:
 			printf("READ ");
 			break;
 		case WRITE:
 			printf("WRITE ");
-			break;
+			break;*/
 		case NUMBER:
 			printf("NUMBER ");
 			break;
 		case ID:
 			printf("ID ");
-			break;
-		case NEWLINE:
-			printf("\n");
 			break;
 		default:
 			printf("UNKNOWN ");
@@ -150,13 +147,13 @@ void print_token(int code) {
 }
 
 
-int main() 
-{	
-	int current_token = NEWLINE;
-	while(1)
-	{
-		current_token = yylex();
-		print_token(current_token);
+//int main() 
+//{	
+//	int current_token = NEWLINE;
+//	while(1)
+//	{
+//		current_token = yylex();
+//		print_token(current_token);
 		//printf(yytext);
-	}
-}
+//	}
+//}

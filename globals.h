@@ -1,4 +1,4 @@
-#define NEWLINE			0
+/*#define NEWLINE			0
 #define ERROR			1
 #define ELSE			2
 #define IF			3
@@ -42,5 +42,5 @@
 #define PARAMETER_STATEMENT	41
 #define STATEMENT		42
 #define ARGUMENTS		43
-
+*/
 int lineno;

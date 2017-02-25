@@ -16,6 +16,11 @@ static const char yysccsid[] = "@(#)yaccpar	1.9 (Berkeley) 02/21/93";
 
 #define YYPURE 0
 
+#line 2 "parser.y"
+#include <stdio.h>
+extern int lineno;
+
+#line 23 "y.tab.c"
 
 #ifndef YYSTYPE
 typedef int YYSTYPE;
@@ -313,6 +318,13 @@ typedef struct {
 } YYSTACKDATA;
 /* variables for the parser stack */
 static YYSTACKDATA yystack;
+#line 216 "parser.y"
+
+void yyerror(char *s)
+{
+	printf("ERROR: %s on line: %d\n", s, lineno);
+}
+#line 327 "y.tab.c"
 
 #if YYDEBUG
 #include <stdio.h>		/* needed for printf */
@@ -519,38 +531,98 @@ yyreduce:
     switch (yyn)
     {
 case 1:
-#line 35 "parser.y"
+#line 43 "parser.y"
 	{}
 break;
 case 2:
-#line 39 "parser.y"
+#line 48 "parser.y"
 	{}
 break;
 case 3:
-#line 40 "parser.y"
-	{}
-break;
-case 4:
-#line 44 "parser.y"
-	{}
-break;
-case 5:
-#line 45 "parser.y"
-	{}
-break;
-case 6:
-#line 49 "parser.y"
-	{}
-break;
-case 7:
 #line 50 "parser.y"
 	{}
 break;
-case 10:
-#line 59 "parser.y"
+case 4:
+#line 55 "parser.y"
 	{}
 break;
-#line 553 "y.tab.c"
+case 5:
+#line 57 "parser.y"
+	{}
+break;
+case 6:
+#line 62 "parser.y"
+	{}
+break;
+case 7:
+#line 64 "parser.y"
+	{}
+break;
+case 8:
+#line 69 "parser.y"
+	{}
+break;
+case 9:
+#line 71 "parser.y"
+	{}
+break;
+case 10:
+#line 76 "parser.y"
+	{}
+break;
+case 11:
+#line 81 "parser.y"
+	{}
+break;
+case 12:
+#line 83 "parser.y"
+	{}
+break;
+case 13:
+#line 88 "parser.y"
+	{}
+break;
+case 14:
+#line 90 "parser.y"
+	{}
+break;
+case 15:
+#line 95 "parser.y"
+	{}
+break;
+case 16:
+#line 97 "parser.y"
+	{}
+break;
+case 17:
+#line 102 "parser.y"
+	{}
+break;
+case 18:
+#line 107 "parser.y"
+	{}
+break;
+case 19:
+#line 109 "parser.y"
+	{}
+break;
+case 20:
+#line 114 "parser.y"
+	{}
+break;
+case 21:
+#line 116 "parser.y"
+	{}
+break;
+case 22:
+#line 121 "parser.y"
+	{}
+break;
+case 48:
+#line 177 "parser.y"
+	{printf("ADDING!\n");}
+break;
+#line 625 "y.tab.c"
     }
     yystack.s_mark -= yym;
     yystate = *yystack.s_mark;
