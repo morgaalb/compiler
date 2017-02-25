@@ -37,6 +37,12 @@ extern int lineno;
 %token MULT
 %token DIV
 
+%left PLUS MINUS
+%left MULT DIV
+%right ASSIGN
+%nonassoc IFX
+%nonassoc ELSE
+
 %%
 
 /* Rule 1 */
@@ -147,7 +153,7 @@ expression_stmt:
 
 /* Rule 15 */
 selection_stmt:
-	IF LPAREN expression RPAREN statement
+	IF LPAREN expression RPAREN statement %prec IFX
 	| IF LPAREN expression RPAREN statement ELSE statement
 	;
 
