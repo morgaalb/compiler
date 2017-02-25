@@ -7,7 +7,6 @@ extern int lineno;
 
 %}
 
-
 %token INTEGER
 %token ID
 %token SEMICOLON
@@ -37,9 +36,9 @@ extern int lineno;
 %token MULT
 %token DIV
 
+%right ASSIGN
 %left PLUS MINUS
 %left MULT DIV
-%right ASSIGN
 %nonassoc IFX
 %nonassoc ELSE
 
