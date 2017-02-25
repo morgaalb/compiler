@@ -43,4 +43,9 @@
 #define STATEMENT		42
 #define ARGUMENTS		43
 */
+
+#define GET_NAME(x)	#x
+
 int lineno;
+
+#define YYDEBUG 0

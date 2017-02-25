@@ -1,5 +1,8 @@
 %{
 #include <stdio.h>
+
+#include "globals.h"
+
 extern int lineno;
 
 %}
@@ -33,16 +36,16 @@ extern int lineno;
 %token MINUS
 %token MULT
 %token DIV
-%token NUM
 
 %%
 
-
+/* Rule 1 */
 program:
 	declaration_list
 		{}
 	;
-
+	
+/* Rule 2 */
 declaration_list:
 	declaration_list declaration
 		{}
@@ -50,6 +53,7 @@ declaration_list:
 		{}
 	;
 
+/* Rule 3 */
 declaration:
 	var_declaration
 		{}
@@ -57,6 +61,7 @@ declaration:
 		{}
 	;
 
+/* Rule 4 */
 var_declaration:
 	type_specifier ID SEMICOLON
 		{}
@@ -64,6 +69,7 @@ var_declaration:
 		{}
 	;
 
+/* Rule 5 */
 type_specifier:
 	INT
 		{}
@@ -71,11 +77,13 @@ type_specifier:
 		{}
 	;
 
+/* Rule 6 */	
 fun_declaration:
 	type_specifier ID LPAREN params RPAREN compound_stmt
 		{}
 	;
 
+/* Rule 7 */
 params:
 	param_list
 		{}
@@ -83,6 +91,7 @@ params:
 		{}
 	;
 
+/* Rule 8 */
 param_list:
 	param_list COMMA param
 		{}
@@ -90,6 +99,7 @@ param_list:
 		{}
 	;
 
+/* Rule 9 */	
 param:
 	type_specifier ID
 		{}
@@ -97,25 +107,29 @@ param:
 		{}
 	;
 
+/* Rule 10 */
 compound_stmt:
 	LBRACE local_declarations statement_list RBRACE
 		{}
 	;
 
+/* Rule 11 */
 local_declarations:
 	local_declarations var_declaration
 		{}
-	| empty
+	| /* empty */
 		{}
 	;
 
+/* Rule 12 */
 statement_list:
 	statement_list statement
 		{}
-	| empty
+	| /* empty */
 		{}
 	;
 
+/* Rule 13 */
 statement:
 	expression_stmt
 		{}
@@ -125,40 +139,48 @@ statement:
 	| return_stmt
 	;
 
+/* Rule 14 */
 expression_stmt:
 	expression SEMICOLON
 	| SEMICOLON
 	;
 
+/* Rule 15 */
 selection_stmt:
 	IF LPAREN expression RPAREN statement
 	| IF LPAREN expression RPAREN statement ELSE statement
 	;
 
+/* Rule 16 */
 iteration_stmt:
 	WHILE LPAREN expression RPAREN statement
 	;
 
+/* Rule 17 */
 return_stmt:
 	RETURN SEMICOLON
 	| RETURN expression SEMICOLON
 	;
 
+/* Rule 18 */
 expression:
 	var ASSIGN expression
 	| simple_expression
 	;
 
+/* Rule 19 */
 var:
 	ID
 	| ID LBRACKET expression RBRACKET
 	;
 
+/* Rule 20 */
 simple_expression:
 	additive_expression relop additive_expression
 	| additive_expression
 	;
 
+/* Rule 21 */
 relop:
 	LEQ
 	| LT
@@ -168,48 +190,53 @@ relop:
 	| NEQ
 	;
 
+/* Rule 22 */
 additive_expression:
 	additive_expression addop term
 	| term
 	;
 
+/* Rule 23 */
 addop:
-	PLUS {printf("ADDING!\n");}
+	PLUS {}
 	| MINUS
 	;
 
+/* Rule 24 */
 term:
 	term mulop factor
 	| factor
 	;
 
+/* Rule 25 */
 mulop:
 	MULT
 	| DIV
 	;
 
+/* Rule 26 */
 factor:
 	LPAREN expression RPAREN
 	| var
 	| call
-	| NUM
+	| NUMBER
 	;
 
+/* Rule 27 */
 call:
 	ID LPAREN args RPAREN
 	;
 
+/* Rule 28 */
 args:
 	arg_list 
-	| empty
+	| /* empty */
 	;
 
+/* Rule 29 */
 arg_list:
 	arg_list COMMA expression
 	| expression
-	;
-
-empty:
 	;
 
 %%
