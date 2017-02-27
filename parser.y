@@ -47,7 +47,7 @@ extern int lineno;
 /* Rule 1 */
 program:
 	declaration_list
-		{}
+		{ }
 	;
 	
 /* Rule 2 */
@@ -85,7 +85,7 @@ type_specifier:
 /* Rule 6 */	
 fun_declaration:
 	type_specifier ID LPAREN params RPAREN compound_stmt
-		{}
+		{ printf("Function declaration\n");}
 	;
 
 /* Rule 7 */
@@ -137,17 +137,23 @@ statement_list:
 /* Rule 13 */
 statement:
 	expression_stmt
-		{}
+		{ printf("statement -> expression_stmt\n"); }
 	| compound_stmt
-	| selection_stmt
-	| iteration_stmt
-	| return_stmt
+		{ printf("statement -> compound_stmt\n"); }
+	| selection_stmt	
+		{ printf("statement -> selection_stmt\n"); }
+	| iteration_stmt	
+		{ printf("statement -> iteration_stmt\n"); }
+	| return_stmt	
+		{ printf("statement -> return_stmt\n"); }
 	;
 
 /* Rule 14 */
 expression_stmt:
 	expression SEMICOLON
+		{ printf("expression_stmt -> expression SEMICOLON;\n"); }
 	| SEMICOLON
+		{ printf("expression_stmt -> SEMICOLON;\n"); }
 	;
 
 /* Rule 15 */

@@ -42,7 +42,7 @@ whitespace	[ \t]+
 "]"				LEX_KEYWORD(RBRACKET)
 "{"				LEX_KEYWORD(LBRACE)
 "}"				LEX_KEYWORD(RBRACE)
-	
+
 {number}		LEX_KEYWORD(NUMBER)
 {identifier}	LEX_KEYWORD(ID)
 {newline}		LEX_NEWLINE
