@@ -1,8 +1,8 @@
 cmc: lex.yy.o y.tab.o cmc.o
-	gcc -o cmc lex.yy.o y.tab.o cmc.o
+	g++ -o cmc lex.yy.o y.tab.o cmc.o
 
-cmc.o: cmc.c
-	gcc -c cmc.c
+cmc.o: cmc.cc
+	g++ -c cmc.cc
 
 lex.yy.o: lex.yy.c
 	gcc -c lex.yy.c
